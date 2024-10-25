@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>-_-</title>
+    <style>
+        /* Set editor dimensions */
+        #editor {
+            height: 300px;
+            width: 100%;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="cm6.bundle.js"></script>
+</head>
+
+<body>
+    <!-- Editor goes in here -->
+    <div id="editor"></div>
+
+    <button name="changetheme">dark</button>
+    <button name="light">light</button>
+
+    <!-- CodeMirror 6 -->
+    
+    <script>
+        const initState = cm6.createEditorState("eee filter: with: >:== 555 #aaa", "light");
+        const view = cm6.createEditorView(initState, document.getElementById("editor"));
+        
+        $(window).load(function () {
+            $("[name='changetheme']").click(function () {
+                cm6.changeEditorTheme(view, "dark");
+                cm6.changeEditorLineWrap(view, true);
+            });
+            $("[name='light']").click(function () {
+                cm6.changeEditorTheme(view, "light");
+            });
+            $("[name='changelinewrap']").click(function () {
+                cm6.changeEditorLineWrap(view, true);
+            });
+        });
+    </script>
+</body>
+
+</html>

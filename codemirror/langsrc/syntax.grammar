@@ -1,0 +1,62 @@
+@top Program { expression* }
+
+@skip { space | LineComment }
+
+expression {
+  Number |
+  Operator |
+  Directive |
+  DirectiveKeyword |
+  Filter |
+  Name |
+  RegExp
+}
+
+//kw<word> { @specialize[@name={word}]<name, word> }
+
+@external tokens newlines from "./tokens" { newline, blankLineStart, newlineBracketed, eof }
+
+
+@tokens {
+  space { $[ \t\n\r]+ }
+  lineComment { "#" }
+  name { "name: "}
+  
+  directive { newline ("with" |"letters" | "random-rate" | "words" | "categories") ": " }
+  directiveOperator { ":" }
+  directiveKeyword { ("std-ipa-features" | "std-assimilations" | "coronal-metathesis") $[ \n]}
+  
+  filter { ("filter" | "reject") ": " | "% "}
+  filterOperator { ">" | ";" }
+  regExp { "+"|"*"|"?"|"^"|"$"|"|"|"\\"|"["|"]"|"{"|"}"|"("|")" }
+  
+  phoneClassOperator { "=" }
+
+  LineComment { lineComment ![\n]* }
+
+  Name { name }
+
+  Directive { directive }
+
+  DirectiveKeyword { directiveKeyword }
+
+  Filter { filter }
+
+  Number {(@digit ("_" | @digit)* ("." ("_" | @digit)*)? | "." @digit ("_" | @digit)*)}
+
+  Operator { directiveOperator | filterOperator | phoneClassOperator }
+
+  RegExp { regExp }
+
+  @precedence {
+    Filter,
+    Name,
+    Directive,
+    DirectiveKeyword,
+    RegExp,
+    Operator,
+    Number,
+    space,
+    LineComment
+  }
+}
