@@ -26,76 +26,10 @@
 
   <div id="content">
     <section id="top">
-      <h1>Lexiwowee</h1>
-
-      <details class="dropdown-group">
-        <summary class="dropdown-btn">Examples</summary>
-        <a class="lexifer-example" value="basic">Default</a>
-        <a class="lexifer-example" value="basic-ex">Default with Comments</a>
-        <a class="lexifer-example" value="tonal">Tonal</a>
-        <a class="lexifer-example" value="hungarian">(Fake) Hungarian</a>
-        <a class="lexifer-example" value="japanese">(Fake) Japanese</a>
-        <a class="lexifer-example" value="australian">Australian-like</a>
-      </details>
-
-      <div id="editor" style="height:200px;"></div>
-      <script src="script/lexifer.js" type="module"></script>
-  
-      <fieldset>
-        <legend>Options</legend>
-        <label for="numOfWords">Number of words:</label><br>
-        <input type="number" autocomplete="off" id="numOfWords" min="0" placeholder="100">
-
-        <div>
-          <div style="float:left; display: inline; margin-right: 10px;">
-            <input type="checkbox" id="sortWords" checked>
-            <label for="sortWords">Sort words</label><br>
-
-            <input type="checkbox" id="capitaliseWords">
-            <label for="capitaliseWords">Capitalise words</label><br>
-
-            <input type="checkbox" id="removeDuplicates" checked>
-            <label for="removeDuplicates">Remove duplicates</label><br>
-
-          </div>
-          <div style="float: left; display: inline;">
-            <input type="checkbox" id="paragraph">
-            <label for="paragraph">Paragraph mode</label><br>  
-
-            <input type="checkbox" id="verbose">
-            <label for="verbose">Show generation steps</label><br>
-
-            <input type="checkbox" id="lexiferLineWrap">
-            <label for="lexiferLineWrap">Editor wrap lines</label>
-          </div>
-        </div>
-
-        <div style="clear: left; padding: 5px 0;">
-          <label for="wordDivider">Word divider (space by default, use \n for newline):</label><br>
-          <input type="text" autocomplete="off" id="wordDivider"><br><br>
-
-          <input type="file" name="loadButton" style="display: none;" accept=".txt, .def">
-          <input type="submit" id="LoadFile" value="Load file" name="fakeLoadButton">
-          <input type="submit" id="saveFile" value="Save file" name="saveButton">
-        </div>
-      
-      </fieldset>
-
-      <div class="switch-field">
-        <input type="submit" id="genWords" name="lexiferButton" value="Generate words">
-        <input type="submit" id='copyLexiferResults' value="Copy words">
-      </div>
-
-      <div id='lexiferMessage'></div>
-      <textarea id='lexiferOutput' spellcheck='false' placeholder="Generated words will be shown here..."></textarea><br>
-
-    </section>
-
-    <section>
       
       <h2>Contents</h2>
       <ol class="nice-list">
-        <li><a href="#lexIntroduction">Introduction on Lexifer</a></li>
+        <li><a href="#lexIntroduction">Introduction on Lexiwowee</a></li>
         <ol class="nice-list">
           <li><a href="#lexInputs">Inputs</a></li>
           <li><a href="#lexOptions">Options</a></li>          
@@ -106,21 +40,19 @@
           <li><a href="#lexName">The name: psuedo-directory</a></li>
         </ol>
 
-        <li><a href="#lexFeatures">The with: directory</a>
+        <li><a href="#lexFeatures">The features: directory</a>
         <ol class="nice-list">
-          <li><a href="#lexFeaturesets">Featuresets</a></li>
-          <li><a href="#lexEngines">Engines</a></li>
-          <ul>
-            <li><a href="#lexStd">std-assimilations</a></li>
-            <li><a href="#lexCoronal">coronal-metathesis</a></li>
-          </ul>
+          <li><a href="#lexFeaturesets">Feature-sets</a></li>
+          <li><a href="#lexWeights">Weight-sets</a></li>
         </ol>
+
         <li><a href="#lexOnWords">On defining frequency, phonology, and word creation</a></li>
         <ol class="nice-list">
           <li><a href="#lexAlphabet">Alphabetization</a></li>
           <li><a href="#lexPhonemes">Phoneme classes</a></li>
           <li><a href="#lexMacros">Macros</a></li>
           <li><a href="#lexRandom">The random-weight: directive</a></li>
+          
           <li><a href="#lexWords">Building words</a></li>
           <li><a href="#lexCategories">Categories</a></li>
         </ol>
@@ -129,8 +61,14 @@
           <li><a href="#lexFilters">Filters</a></li>
           <li><a href="#lexRejections">Rejections</a></li>
           <li><a href="#lexRegex">Using Regular Expresions</a></li>
+          <li><a href="#lexEngines">"Engine:" filters</a></li>
+          <ul>
+            <li><a href="#lexStd">std-assimilations</a></li>
+            <li><a href="#lexCoronal">coronal-metathesis</a></li>
+          </ul>
           <li><a href="#lexClusters">Cluster fields</a></li>
         </ol>
+        <li><a href="#lexTroubleshooting">Troubleshooting</a></li>
 
 
       </ol>

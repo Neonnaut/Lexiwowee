@@ -1,29 +1,60 @@
-/*
- * Copyright (c) 2021-2022 William Baker
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to
- * deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- * sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
- */
-// Actual code run when you click "generate"
 
-import PhonologyDefinition from './PhonologyDefinition.js';
-import { ClusterEngine, Segment, Place, Manner } from './SmartClusters.js';
-import ArbSorter from './ArbSorter.js';
+
+
+function check_inputs(file, num_of_words = 100, mode, word_divider = " ",
+    remove_duplicates = true, force_word_gen = false, capitalise_words = false, sort_words = true
+) {
+
+    if (!file) {
+        stderr(`File editor was empty.`);
+    }
+
+    // number of words
+    if (isNaN(num_of_words)) {
+        num_of_words = 100;
+        forceNum = true;
+    }
+    if (num_of_words <= 0 || num_of_words === Infinity) {
+        stderr(`Error: Cannot generate ${num_of_words} words. Generating 100 words instead.`);
+        num_of_words = 100;
+    }
+    if (num_of_words >= 1000000) {
+        stderr(`Error: Cannot generate more than ${num_of_words} words. Generating 1,000,000 words instead.`);
+        num_of_words = 100;
+    }
+    if (num_of_words !== Math.round(num_of_words)) {
+        stderr(`Info: Requested number of words (${num_of_words}) is not an `
+            + `integer. Rounding to ${Math.round(num_of_words)}.`);
+        num_of_words = Math.round(num_of_words);
+    }
+
+    // Mode and word divider
+    if (mode == 'word-list') {
+        word_divider = word_divider.replace(new RegExp('\\\\n', 'g'), '\n');
+    } else if (mode == 'paragraph') {
+        word_divider = '\n'
+        sort_words = false;
+        capitalise_words = false;
+        remove_duplicates = false;
+        force_word_gen = false;
+    } else if (mode == 'verbose') {
+        word_divider = '\n'
+        sort_words = false;
+        capitalise_words = false;
+    } else {
+        stderr(`Malformed mode "${mode}". Using word-list mode instead.`);
+        word_divider = word_divider.replace(new RegExp('\\\\n', 'g'), '\n');
+        mode = 'word-list';
+    }
+
+    // Options
+    if (typeof remove_duplicates != "boolean" || typeof force_word_gen != "boolean" ||
+        typeof force_word_gen != "boolean" || typeof force_word_gen != "boolean") {
+        stderr(`Malformed options.`);
+    }
+
+
+}
 
 // Original  -- returns a string
 const genWords = (() => {

@@ -148,13 +148,13 @@ class SoundSystem {
 
         for (let i = 0; i < 4_294_967_295; ++i) {
 
-            if (removeDuplicates) {
+            if (removeDuplicates && !force) {
                 if (numOfDuplicates > numWords * 5) {
                     break;
                 }
             }
 
-            if (numOfRejects > numWords * 5) {
+            if (numOfRejects > numWords * 5 && !force) {
                 break;
             }
 

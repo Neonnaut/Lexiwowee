@@ -2,9 +2,12 @@ function getLexExample(example) {
     var choice = '';
 
     if (example == "basic") {
-        choice = `with: std-ipa-features std-assimilations coronal-metathesis
+        choice = `features: std-ipa-features
 
 letters: ʔ a á b ch d e g h i k l m n o p r s t u w y
+
++stop = p b t d k g 
++nasal = m n ng
 
 C = t n k m ch l ʔ s r d h w b y p g
 D = n l ʔ t k r p
@@ -13,6 +16,8 @@ V = a i e á u o
 $S = CVD?
 
 words: V?$S$S V?$S V?$S$S$S
+
+engines: std-assimilations coronal-metathesis
 
 # haplology
 reject: (..+)\\1+
@@ -58,7 +63,7 @@ filter: nr > tr; mr > pr; ŋ > n
 reject: (..+)\\1+`;
     } else if (example == "tonal") {
         choice = `# A tonal language with a slightly odd phoneme inventory.
-# Turn on "Display all generation steps" and select a number of words to
+# Turn on "Show generation steps" and select a number of words to
 # see how this operates.
 
 C = t n k l ch m kw v j tl y d tw s zh f g sh dw w t' z gh k' sw ng zw gw ch' nw kh tl' ngw ny kw' ɬ ghw khw b dl p

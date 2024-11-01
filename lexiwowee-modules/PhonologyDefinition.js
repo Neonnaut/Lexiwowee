@@ -310,10 +310,10 @@ class PhonologyDefinition {
             }
         }
     }
-    generate(numWords = 1, verbose = false, sorted = verbose, removeDuplicates) {
+    generate(numWords = 1, verbose = false, sorted = verbose, removeDuplicates, force_words) {
         const retval = Object.create(null);
         for (const cat of this.categories) {
-            const wordList = this.soundsys.generate(numWords, verbose, sorted, cat, removeDuplicates);
+            const wordList = this.soundsys.generate(numWords, verbose, sorted, cat, removeDuplicates, force_words);
             if (wordList.length < numWords) {
                 this.stderr(`Info: Could only generate ${wordList.length} word`
                     + `${wordList.length === 1 ? '' : 's'} `
